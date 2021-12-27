@@ -10,7 +10,7 @@ public class AntColony extends StandartColony {
     public void draw(Graphics2D screen) {
         if(x==-1)
             return;
-        screen.setColor(Color.BLACK);
+        screen.setColor(new Color(165, 42, 42));
         screen.fillOval(x, y, D, D);
     }
 }
