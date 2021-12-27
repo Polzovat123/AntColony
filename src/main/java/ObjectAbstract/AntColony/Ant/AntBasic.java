@@ -1,4 +1,4 @@
-package AntColony.Ant;
+package ObjectAbstract.AntColony.Ant;
 
 public class AntBasic implements Ant{
 }
