@@ -7,12 +7,16 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class Form extends JPanel implements ActionListener {
+    Timer timer;
     FormManager mngr;
     int width = 800, height = 800;
+    int count = 0;
+
     public Form(int W, int H){
         setBackground(Color.GREEN);
         initComponent(W, H);
         setFocusable(true);
+        refreshScreen();
     }
     public void initComponent(int W, int H){
         width = W; height = H;
@@ -26,11 +30,34 @@ public class Form extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D screen = (Graphics2D)g;
+
         mngr.drawAllComponents(screen);
+    }
+    public void move(){
+        if(count%10==0){
+            System.out.println("need new");
+            mngr.timeToBuildNewAnt();
+            count++;
+        }
+        mngr.moveAllElements();
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        System.out.println("ActionPerform");
         mngr.moveAllComponents();
+        move();
         repaint();
+    }
+    public void refreshScreen(){
+        timer = new Timer(1, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                move();
+                repaint();
+            }
+        });
+        timer.setRepeats(true);
+        timer.setDelay(60);
+        timer.start();
     }
 }

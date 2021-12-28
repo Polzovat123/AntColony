@@ -11,6 +11,7 @@ public class FormManager {
     private int D = 40;
     private ArrayList<Colony> colonies;
     private MFabric fbr;
+    private int dx =5 , dy=0;
     int width = 800, height = 800;
 
 
@@ -42,5 +43,16 @@ public class FormManager {
         if(x+D>width || x-D<0)return false;
         if(y+D>height || y-D<0)return false;
         return true;
+    }
+    public void moveAllElements(){
+        for(Colony one: colonies){
+            one.move(dx,dy);
+        }
+    }
+    public void timeToBuildNewAnt(){
+        for(Colony one: colonies){
+            one.createAnt();
+            break;
+        }
     }
 }
