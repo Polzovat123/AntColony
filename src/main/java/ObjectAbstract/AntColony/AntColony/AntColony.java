@@ -1,6 +1,4 @@
-package ObjectAbstract.AntColony;
-
-import ObjectAbstract.AntColony.Ant.Ant;
+package ObjectAbstract.AntColony.AntColony;
 
 import java.awt.*;
 
@@ -9,8 +7,8 @@ public class AntColony extends StandartColony {
         super();
     }
     @Override
-    public void move(int dx, int dy){
-        move_ants(dx, dy);
+    public void move(int step){
+        move_ants(step);
     }
     @Override
     public void draw(Graphics2D screen) {

@@ -1,4 +1,4 @@
-package ObjectAbstract.AntColony;
+package ObjectAbstract.AntColony.AntColony;
 
 import java.awt.*;
 
@@ -7,6 +7,7 @@ public interface Colony {
     Colony init(int _x, int _y);
     boolean isTouch(int _x, int _y);
     void createAnt();
-    void move(int dx, int dy);
+    void move(int step);
     boolean isTouch(Colony b);
+    void isTouchAnt(Point FoodPoint,int S);
 }

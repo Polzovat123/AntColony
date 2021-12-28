@@ -1,4 +1,4 @@
-package ObjectAbstract.AntColony;
+package ObjectAbstract.AntColony.AntColony;
 
 import Fabric.AntFabric;
 import ObjectAbstract.AntColony.Ant.Ant;
@@ -41,13 +41,20 @@ public class StandartColony implements Colony{
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public void move(int step) {
 
     }
 
     @Override
     public boolean isTouch(Colony b) {
         return b.isTouch(x, y);
+    }
+
+    @Override
+    public void isTouchAnt(Point FoodPoint, int S) {
+        for(Ant ant : myAnt){
+            ant.isFinish(FoodPoint, S);
+        }
     }
 
     @Override
@@ -61,9 +68,10 @@ public class StandartColony implements Colony{
         }
     }
 
-    protected  void move_ants(int dx, int dy){
+    protected  void move_ants(int step){
         for(Ant ant : myAnt){
-            ant.move(dx, dy);
+            ant.move(step);
         }
     }
+
 }

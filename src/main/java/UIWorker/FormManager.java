@@ -2,7 +2,8 @@ package UIWorker;
 
 import Fabric.AntColonyFabric;
 import Fabric.MFabric;
-import ObjectAbstract.AntColony.Colony;
+import ObjectAbstract.AntColony.AntColony.Colony;
+import ObjectAbstract.SomeUsefulComponent.Food.AntFood;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,13 +11,15 @@ import java.util.ArrayList;
 public class FormManager {
     private int D = 40;
     private ArrayList<Colony> colonies;
+    private ArrayList<AntFood> foods;
     private MFabric fbr;
-    private int dx =5 , dy=0;
+    private int delta =5;
     int width = 800, height = 800;
 
 
     public FormManager(int W, int H){
         colonies = new ArrayList<>();
+        foods = new ArrayList<>();
         width = W;
         height = H;
         fbr = new AntColonyFabric();
@@ -25,6 +28,9 @@ public class FormManager {
         for(Colony one: colonies){
             one.draw(screen);
         }
+        for(AntFood food: foods){
+            food.draw(screen);
+        }
     }
     public boolean createNewColony(int x, int y){
         if(!canINsert(x,y))return false;
@@ -32,9 +38,6 @@ public class FormManager {
                 fbr.createColony(1).init(x, y)
         );
         return true;
-    }
-    public void moveAllComponents(){
-        System.out.print("move happend");
     }
     public boolean canINsert(int x, int y){
         for(Colony one: colonies){
@@ -46,13 +49,23 @@ public class FormManager {
     }
     public void moveAllElements(){
         for(Colony one: colonies){
-            one.move(dx,dy);
+            one.move(delta);
+        }
+        for(AntFood food: foods){
+            Point f1 = food.getPoint();
+            for(Colony one: colonies){
+                one.isTouchAnt(f1, food.D);
+            }
         }
     }
     public void timeToBuildNewAnt(){
         for(Colony one: colonies){
             one.createAnt();
-            break;
         }
     }
+    public void buildFood(int x, int y){
+        AntFood eda = new AntFood(x, y);
+        foods.add(eda);
+    }
+
 }

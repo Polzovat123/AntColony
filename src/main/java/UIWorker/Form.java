@@ -25,29 +25,30 @@ public class Form extends JPanel implements ActionListener {
         for(int i=0; i<10; i++)
             if(!mngr.createNewColony(r.nextInt(width),r.nextInt(height)))
                 i--;
+        mngr.buildFood(300, 300);
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D screen = (Graphics2D)g;
-
         mngr.drawAllComponents(screen);
     }
+
     public void move(){
-        if(count%10==0){
-            System.out.println("need new");
+        if(count%10==0&&count<1000){
             mngr.timeToBuildNewAnt();
-            count++;
         }
+        count++;
         mngr.moveAllElements();
     }
+
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println("ActionPerform");
-        mngr.moveAllComponents();
         move();
         repaint();
     }
+
     public void refreshScreen(){
         timer = new Timer(1, new ActionListener() {
             @Override
@@ -57,7 +58,7 @@ public class Form extends JPanel implements ActionListener {
             }
         });
         timer.setRepeats(true);
-        timer.setDelay(60);
+        timer.setDelay(1);
         timer.start();
     }
 }
