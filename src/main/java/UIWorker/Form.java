@@ -22,10 +22,12 @@ public class Form extends JPanel implements ActionListener {
         width = W; height = H;
         mngr = new FormManager(W, H);
         Random r = new Random();
-        for(int i=0; i<10; i++)
+        for(int i=0; i<1; i++)
             if(!mngr.createNewColony(r.nextInt(width),r.nextInt(height)))
                 i--;
         mngr.buildFood(300, 300);
+        mngr.buildFood(300, 100);
+        mngr.buildFood(100, 300);
     }
 
     @Override

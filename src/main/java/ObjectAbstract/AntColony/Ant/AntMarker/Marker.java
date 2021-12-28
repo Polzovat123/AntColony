@@ -1,5 +1,10 @@
 package ObjectAbstract.AntColony.Ant.AntMarker;
 
-public interface Marker {
+import java.awt.*;
 
+public interface Marker {
+    void move();
+    Point getPositon();
+    void draw(Graphics2D screen);
+    int getSmell();
 }
