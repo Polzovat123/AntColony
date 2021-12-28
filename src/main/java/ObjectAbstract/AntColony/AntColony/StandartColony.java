@@ -2,6 +2,7 @@ package ObjectAbstract.AntColony.AntColony;
 
 import Fabric.AntFabric;
 import ObjectAbstract.AntColony.Ant.Ant;
+import ObjectAbstract.AntColony.Ant.AntMarker.Marker;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -42,6 +43,11 @@ public class StandartColony implements Colony{
 
     @Override
     public void move(int step) {
+
+    }
+
+    @Override
+    public void move(int step, ArrayList<Marker> mr) {
 
     }
 
